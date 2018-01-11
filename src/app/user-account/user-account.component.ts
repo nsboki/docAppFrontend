@@ -1,3 +1,4 @@
+import { UserObj } from "../user";
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UserService} from '../user.service';
@@ -9,7 +10,7 @@ import {UserService} from '../user.service';
 })
 export class UserAccountComponent implements OnInit {
     
-  userList: Object[];
+  userList: UserObj[];
 
   constructor(private _userService: UserService, private _router: Router) {
     this.getUsers();
@@ -23,7 +24,7 @@ export class UserAccountComponent implements OnInit {
           error => console.log(error)
     )
   }
-  
+   
   enableUser(username: string) {
     this._userService.enableUser(username).subscribe();
     location.reload();

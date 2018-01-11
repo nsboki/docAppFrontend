@@ -14,6 +14,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { DoctorPatientsComponent } from './user-account/doctor-patients/doctor-patients.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { AppointmentComponent } from './appointment/appointment.component';
     NavbarComponent,
     LoginComponent,
     UserAccountComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    ProfileComponent,
+    ProfileEditComponent,
+    DoctorPatientsComponent
   ],
   imports: [
     BrowserModule,

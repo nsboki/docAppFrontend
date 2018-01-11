@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { UserAccountComponent } from "./user-account/user-account.component";
 import { AppointmentComponent } from "./appointment/appointment.component";
+import { ProfileEditComponent } from "./profile/profile-edit/profile-edit.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { DoctorPatientsComponent } from "./user-account/doctor-patients/doctor-patients.component";
 
 const appRoutes: Routes = [
   {
@@ -16,12 +19,32 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'userAccount',
+    path: 'userAccount/all',
     component: UserAccountComponent
   },
   {
-    path: 'appointment',
+    path: 'userAccount/doctor',
+    component: DoctorPatientsComponent
+  },
+  {
+    path: 'appointment/all',
     component: AppointmentComponent
+  },
+  {
+    path: 'appointment/doctor',
+    component: AppointmentComponent
+  },
+  {
+    path: 'appointment/user',
+    component: AppointmentComponent
+  },
+  {
+    path: 'me',
+    component: ProfileComponent
+  },
+  {
+    path: 'me/edit',
+    component: ProfileEditComponent
   }
 ];
 

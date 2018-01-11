@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   loggedIn: boolean;
+  private isAdmin: boolean;
 
   constructor(private _loginService: LoginService, private _router : Router) {
     if(localStorage.getItem('PortalAdminHasLoggedIn') == '') {
@@ -17,12 +18,14 @@ export class NavbarComponent implements OnInit {
     } else {
       this.loggedIn = true;
     }
+    this.isAdmin = true;
   }
 
   logout(){
     this._loginService.logout().subscribe(
       res => {
         localStorage.setItem('PortalAdminHasLoggedIn', '');
+        localStorage.removeItem('Username');
         location.reload();
         this._router.navigate(['/login']);
       },

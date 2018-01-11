@@ -10,11 +10,12 @@ import {LoginService} from '../login.service';
 export class LoginComponent implements OnInit {
 
   loggedIn: boolean;
+  loggedInUser: string;
   username: string;
   password: string;
 
   constructor (private loginService: LoginService) {
-    if(localStorage.getItem('PortalAdminHasLoggedIn') == '' || localStorage.getItem('PortalAdminHasLoggedIn') == null) {
+    if(localStorage.getItem('PortalAdminHasLoggedIn') == '' || localStorage.getItem('PortalAdminHasLoggedIn') === null) {
       this.loggedIn = false;
     } else {
       this.loggedIn = true;
@@ -27,11 +28,15 @@ export class LoginComponent implements OnInit {
         this.loggedIn=true;
         localStorage.setItem('PortalAdminHasLoggedIn', 'true');
         location.reload();
+        localStorage.setItem('Username', this.username)
       },
       err => console.log(err)
     );
+    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  this.loggedInUser = localStorage.getItem('Username');
+  }
 
 }
