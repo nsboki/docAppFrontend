@@ -1,0 +1,7 @@
+<mat-form-field class="example-full-width">
+  <input matInput [matDatepickerFilter]="myFilter" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<button class="btn btn-success" (click)="onCreate()">Create</button>
+<button class="btn btn-danger" (click)="onCancel()">Cancel</button>

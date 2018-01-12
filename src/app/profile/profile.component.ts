@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   private firstName: string;
   private lastName: string;
   private hasDoctor: boolean;
+  private userRole: string;
   
   constructor(private _userService: UserService,
               private _router: Router) { }
@@ -28,7 +29,11 @@ export class ProfileComponent implements OnInit {
     this.username = localStorage.getItem('Username');
     this._userService.getUser(this.username).subscribe(
       user => {this.me = JSON.parse(JSON.parse(JSON.stringify(user))._body);
-        console.log(this.me);
+//        console.log(this.me);
+//        this._userService.getUserRole(this.me.username).subscribe(
+//          role => { this.userRole = JSON.parse(JSON.parse(JSON.stringify(role))._body);
+//          }
+//        );
         if(!this.me.doctorUsername===null){
           this.hasDoctor = true;
         } else {
@@ -39,7 +44,11 @@ export class ProfileComponent implements OnInit {
       }
     
     );
-    
+    this._userService.getUserRole(this.username).subscribe(
+      (role: any)=> {
+        this.userRole = JSON.parse(JSON.stringify(role))._body;
+      }
+      );
   }
   
   

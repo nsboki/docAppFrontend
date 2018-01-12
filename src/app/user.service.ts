@@ -1,3 +1,4 @@
+import { ServerUrl } from "./auth.service";
 import { UserObj } from "./user";
 import { HttpParams } from "@angular/common/http";
 import { Injectable } from '@angular/core';
@@ -33,6 +34,11 @@ export class UserService {
   getUser(username: string) {
     let url = "http://localhost:8080/api/user/"+username;
     return this._http.get(url, { withCredentials: true });
+  }
+  
+  getUserRole(username: string) {
+    let url = ServerUrl + "/api/user/role/"+username;
+    return this._http.get(url, { withCredentials: true }); 
   }
 //  updateUser(me: UserObj) {
 //    

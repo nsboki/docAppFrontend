@@ -2,6 +2,7 @@ import { UserObj } from "../user";
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UserService} from '../user.service';
+import { forEachChild } from "typescript";
 
 @Component({
   selector: 'app-user-account',
@@ -11,7 +12,6 @@ import {UserService} from '../user.service';
 export class UserAccountComponent implements OnInit {
     
   userList: UserObj[];
-
   constructor(private _userService: UserService, private _router: Router) {
     this.getUsers();
   }
@@ -23,6 +23,10 @@ export class UserAccountComponent implements OnInit {
           },
           error => console.log(error)
     )
+  }
+  
+  getUserRole(username: string) {
+    this._userService.getUserRole(username);
   }
    
   enableUser(username: string) {

@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { UserAccountComponent } from "./user-account/user-account.component";
 import { AppointmentComponent } from "./appointment/appointment.component";
+import { DoctorAppointmentsComponent } from "./appointment/doctor-appointments/doctor-appointments.component";
+import { NewAppointmentComponent } from "./appointment/new-appointment/new-appointment.component";
+import { UserAppointmentsComponent } from "./appointment/user-appointments/user-appointments.component";
+import { AuthGuard } from "./auth.guard";
 import { ProfileEditComponent } from "./profile/profile-edit/profile-edit.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { DoctorPatientsComponent } from "./user-account/doctor-patients/doctor-patients.component";
@@ -20,7 +24,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'userAccount/all',
-    component: UserAccountComponent
+    component: UserAccountComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'userAccount/doctor',
@@ -32,11 +37,15 @@ const appRoutes: Routes = [
   },
   {
     path: 'appointment/doctor',
-    component: AppointmentComponent
+    component: DoctorAppointmentsComponent
   },
   {
     path: 'appointment/user',
-    component: AppointmentComponent
+    component: UserAppointmentsComponent
+  },
+  {
+    path: 'appointment/new',
+    component: NewAppointmentComponent
   },
   {
     path: 'me',

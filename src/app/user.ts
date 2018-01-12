@@ -1,6 +1,6 @@
 /* Defines the user entity */
 export interface UserObj {
-    id: number;
+    userId: number;
     firstName: string;
     lastName: string;
     email: string;
