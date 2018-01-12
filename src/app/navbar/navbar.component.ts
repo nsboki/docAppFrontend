@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { UserService } from "../user.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,18 +10,40 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  loggedIn: boolean;
+  private loggedIn: boolean;
   private isAdmin: boolean;
+  private isDoctor: boolean;
+  private isPatient: boolean;
+  private userRole: string;
 
-  constructor(private _loginService: LoginService, private _router : Router) {
+  constructor(private _loginService: LoginService, 
+              private _router : Router,
+              private _userService: UserService) {
     if(localStorage.getItem('PortalAdminHasLoggedIn') == '') {
       this.loggedIn = false;
     } else {
       this.loggedIn = true;
+      this._userService.getUserRole(localStorage.getItem('Username')).subscribe(
+        role => {
+          this.userRole = JSON.parse(JSON.stringify(role))._body;
+      if(this.userRole == 'ROLE_ADMIN') {
+        this.isAdmin = true;
+        this.isDoctor = false;
+        this.isPatient = false;
+      } else if(this.userRole == 'ROLE_DOCTOR') {
+        this.isAdmin = false;
+        this.isDoctor = true;
+        this.isPatient = false;    
+      } else {
+        this.isAdmin = false;
+        this.isDoctor = false;
+        this.isPatient = true;
+      }
+        }
+      );
     }
-    this.isAdmin = true;
   }
-
+  
   logout(){
     this._loginService.logout().subscribe(
       res => {

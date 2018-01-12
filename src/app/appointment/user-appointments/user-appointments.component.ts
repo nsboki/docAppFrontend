@@ -3,7 +3,7 @@ import { UserObj } from "../../user";
 import { UserService } from "../../user.service";
 import { AppointmentObj } from "../appointment";
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-user-appointments',
@@ -12,20 +12,49 @@ import { Router } from "@angular/router";
 })
 export class UserAppointmentsComponent implements OnInit {
 
-  private username: string;
+  date: Date;
+  dateString: string;
+  minDate = new Date();
+  maxDate = new Date();
+  appointment: AppointmentObj;
+  
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
+  
+  username: string;
   me: UserObj;
   appointmentList: AppointmentObj[];
   
   constructor(private _appointmentService: AppointmentService,
               private _userService: UserService,
-              private _router: Router) {
+              private _router: Router,
+              private _route: ActivatedRoute) {
     this.username = localStorage.getItem('Username');
     this._userService.getUser(this.username).subscribe(
       user => {this.me = JSON.parse(JSON.parse(JSON.stringify(user))._body);
         this.getAppointmentList(this.me.userId);
       });
+    
+    if(this.minDate.getMonth()==12){
+      this.maxDate.setMonth(1);
+      this.maxDate.setFullYear(this.maxDate.getFullYear()+1); 
+    } else {
+      this.maxDate.setMonth(this.minDate.getMonth()+1);
+    }
+    
   }
 
+  haveDate() {
+    if(this.date){
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
   getAppointmentList(id: number) {
     this._appointmentService.getUserAppointments(id).subscribe(
       res => {
@@ -35,16 +64,19 @@ export class UserAppointmentsComponent implements OnInit {
     )
   } 
 
-  confirmAppointment(id: number) {
-      this._appointmentService.confirmAppointment(id).subscribe();
-      location.reload();
-    }
-  
   ngOnInit() {
   }
   
   onNew() {
-    this._router.navigate(['appointment/new']);
+    this.dateString = this.date.getFullYear() + "-" +this.date.getMonth()+1 + "-" + this.date.getDate();
+    return this._appointmentService.createAppointment(this.dateString, this.username).subscribe(
+        (data: any) => {
+          this._router.navigate(['appointment/user']);
+        }
+        );
+//    console.log(this.dateString);
+//    console.log("Schedule An Appointment");
+//    this._router.navigate(['appointment/new']);
     
   }
 

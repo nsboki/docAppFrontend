@@ -6,21 +6,26 @@
 			<th>Doctor</th>
 			<th>Patient</th>
 			<th>Date</th>
+			<th>Number</th>
 			<th>Description</th>
 			<th>Confirmed?</th>
-			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr *ngFor="let appointment of appointmentList">
 			<td>{{appointment.doctorUsername}}</td>
 			<td>{{appointment.patient.username}}</td>
-			<td>{{appointment.date | date: 'MM/dd/yyyy - hh:mm'}}</td>
+			<td>{{appointment.date | date: 'dd/MM/yyyy'}}</td>
+			<td>{{appointment.number}}</td>
 			<td>{{appointment.description}}</td>
 			<td>{{appointment.confirmed}}</td>
-			<td [hidden]="appointment.confirmed"><a (click)="confirmAppointment(appointment.id)" style="cursor: pointer;">Confirm</a></td>
 		</tr>
 	</tbody>
 </table>
-<button class="btn btn-success" (click)="onNew()">Schedule An Appointment</button>
+<mat-form-field class="example-full-width">
+  <input matInput [matDatepickerFilter]="myFilter" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<button class="btn btn-success" (click)="onNew()" [disabled]="haveDate()">Schedule An Appointment</button>
  

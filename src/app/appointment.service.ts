@@ -1,4 +1,5 @@
 import { AppointmentObj } from "./appointment/appointment";
+import { ServerUrl } from "./auth.service";
 import { UserObj } from "./user";
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
@@ -29,9 +30,9 @@ export class AppointmentService {
     return this._http.get(url, { withCredentials: true });
   }
   
-  createAppointment(date: Date, me: UserObj) {
-    let url = "http://localhost:8080/api/appointment/new/"+date;
-    return this._http.post(url, me, { withCredentials: true });
+  createAppointment(dateString: string, username: string) {
+    let url = ServerUrl+"/api/appointment/new/"+username+"/"+dateString;
+    return this._http.post(url, dateString, { withCredentials: true });
   }
   
 }

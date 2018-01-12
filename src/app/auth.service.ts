@@ -21,8 +21,7 @@ export class AuthService {
   private me: UserObj;
   
   
-  constructor(private _userService: UserService,
-              private _roleService: RoleService) { }
+  constructor() { }
   
   login() {
     this.getLoggedInUser();
@@ -30,23 +29,23 @@ export class AuthService {
   }
   
   getLoggedInUser() {
-    this.username = localStorage.getItem('Username');
-    this._userService.getUser(this.username).subscribe(
-      user => {this.me = JSON.parse(JSON.parse(JSON.stringify(user))._body);
-      });
-    this._roleService.getRole(this.me.userId).subscribe(
-      userRole => {this.userRole = JSON.parse(JSON.parse(JSON.stringify(userRole))._body);
-//      this.loggedInUser = new AuthenticatedUser(this.me.username, this.me.password, this.userRole);
-      });
+//    this.username = localStorage.getItem('Username');
+////    this._userService.getUser(this.username).subscribe(
+//      user => {this.me = JSON.parse(JSON.parse(JSON.stringify(user))._body);
+//      });
+//    this._roleService.getRole(this.me.userId).subscribe(
+//      userRole => {this.userRole = JSON.parse(JSON.parse(JSON.stringify(userRole))._body);
+////      this.loggedInUser = new AuthenticatedUser(this.me.username, this.me.password, this.userRole);
+//      });
   }
   
   getRole(userId: number) {
-    let userRole;
-    this._roleService.getRole(this.me.userId).subscribe(
-      role => {userRole = JSON.parse(JSON.parse(JSON.stringify(role))._body); 
-           this.loggedInUser.role = userRole;
-      });
-    return userRole;
+//    let userRole;
+//    this._roleService.getRole(this.me.userId).subscribe(
+//      role => {userRole = JSON.parse(JSON.parse(JSON.stringify(role))._body); 
+//           this.loggedInUser.role = userRole;
+//      });
+//    return userRole;
   }
   
   isAuthenticated() {
