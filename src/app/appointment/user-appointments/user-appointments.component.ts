@@ -1,4 +1,4 @@
-import { AppointmentService } from "../../appointment.service";
+  import { AppointmentService } from "../../appointment.service";
 import { UserObj } from "../../user";
 import { UserService } from "../../user.service";
 import { AppointmentObj } from "../appointment";
@@ -27,6 +27,7 @@ export class UserAppointmentsComponent implements OnInit {
   username: string;
   me: UserObj;
   appointmentList: AppointmentObj[];
+  haveActiveAppointment: boolean;
   
   constructor(private _appointmentService: AppointmentService,
               private _userService: UserService,
@@ -44,11 +45,31 @@ export class UserAppointmentsComponent implements OnInit {
     } else {
       this.maxDate.setMonth(this.minDate.getMonth()+1);
     }
+    this._appointmentService.getActiveAppointment(this.username).subscribe(
+      appointment => {
+        this.haveActiveAppointment = JSON.parse(JSON.stringify(appointment))._body;
+        console.log(this.haveActiveAppointment); 
+      }
+    );
     
   }
 
+  haveActiveApp() {
+    return (this.haveActiveAppointment);
+  }
+  
   haveDate() {
     if(this.date){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  disableBatton() {
+    if(!this.haveActiveAppointment){
+      return true;
+    } else if(this.haveDate()){
       return false;
     } else {
       return true;
@@ -59,6 +80,7 @@ export class UserAppointmentsComponent implements OnInit {
     this._appointmentService.getUserAppointments(id).subscribe(
       res => {
             this.appointmentList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            
           },
           error => console.log(error)
     )

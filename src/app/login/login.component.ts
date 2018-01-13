@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable}  from 'rxjs/Observable';
 import {LoginService} from '../login.service';
+import { UserService } from "../user.service";
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,10 @@ export class LoginComponent implements OnInit {
   loggedInUser: string;
   username: string;
   password: string;
+  success: boolean;
 
-  constructor (private loginService: LoginService) {
+  constructor (private _loginService: LoginService,
+               private _userService: UserService) {
     if(localStorage.getItem('PortalAdminHasLoggedIn') == '' || localStorage.getItem('PortalAdminHasLoggedIn') === null) {
       this.loggedIn = false;
     } else {
@@ -23,15 +26,23 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit() {
-    this.loginService.sendCredential(this.username, this.password).subscribe(
+    this._loginService.sendCredential(this.username, this.password).subscribe(
       res => {
         this.loggedIn=true;
         localStorage.setItem('PortalAdminHasLoggedIn', 'true');
         location.reload();
         localStorage.setItem('Username', this.username)
+        
+//        this._userService.checkCredential(this.username, this.password).subscribe(
+//          success => {
+//            this.success = JSON.parse(JSON.stringify(success))._body;
+//            console.log(this.success);
+//          }
+//        );
       },
       err => console.log(err)
     );
+    
     
   }
 

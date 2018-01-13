@@ -30,14 +30,17 @@ export class NavbarComponent implements OnInit {
         this.isAdmin = true;
         this.isDoctor = false;
         this.isPatient = false;
+        localStorage.setItem('Role','ADMIN');
       } else if(this.userRole == 'ROLE_DOCTOR') {
         this.isAdmin = false;
         this.isDoctor = true;
-        this.isPatient = false;    
+        this.isPatient = false;
+        localStorage.setItem('Role','DOCTOR');    
       } else {
         this.isAdmin = false;
         this.isDoctor = false;
         this.isPatient = true;
+        localStorage.setItem('Role','USER');
       }
         }
       );
@@ -49,6 +52,7 @@ export class NavbarComponent implements OnInit {
       res => {
         localStorage.setItem('PortalAdminHasLoggedIn', '');
         localStorage.removeItem('Username');
+        localStorage.removeItem('Role');
         location.reload();
         this._router.navigate(['/login']);
       },

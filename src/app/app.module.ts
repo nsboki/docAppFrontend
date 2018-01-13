@@ -21,7 +21,7 @@ import { DoctorPatientsComponent } from './user-account/doctor-patients/doctor-p
 import { DoctorAppointmentsComponent } from './appointment/doctor-appointments/doctor-appointments.component';
 import { UserAppointmentsComponent } from './appointment/user-appointments/user-appointments.component';
 import { NewAppointmentComponent } from './appointment/new-appointment/new-appointment.component';
-import { AuthGuard } from "./auth.guard";
+import { AuthGuard, AdminAuthGuard, DoctorAuthGuard, UserAuthGuard } from "./auth.guard";
 import { CdkTableModule } from "@angular/cdk/table";
 import {
   MatAutocompleteModule,
@@ -133,7 +133,10 @@ export class MaterialModule {}
     LoginService,
     UserService,
     AppointmentService,
-    AuthGuard
+    AuthGuard,
+    AdminAuthGuard,
+    DoctorAuthGuard,
+    UserAuthGuard
   ],
   bootstrap: [AppComponent]
 })

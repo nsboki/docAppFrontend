@@ -5,7 +5,7 @@ import {Observable}     from 'rxjs/Observable';
 @Injectable()
 export class LoginService {
 
-  constructor (private http: Http) {}
+  constructor (private _http: Http) {}
 
   sendCredential(username: string, password: string) {
     let url = "http://localhost:8080/index";
@@ -15,12 +15,12 @@ export class LoginService {
       'Content-Type': 'application/x-www-form-urlencoded'
       // 'Access-Control-Allow-Credentials' : true
     });
-    return this.http.post(url, params, {headers: headers, withCredentials : true});
+    return this._http.post(url, params, {headers: headers, withCredentials : true});
   }
 
   logout() {
      let url = "http://localhost:8080/logout";
-     return this.http.get(url, { withCredentials: true });
+     return this._http.get(url, { withCredentials: true });
    }
 
 }

@@ -7,7 +7,7 @@ import { AppointmentComponent } from "./appointment/appointment.component";
 import { DoctorAppointmentsComponent } from "./appointment/doctor-appointments/doctor-appointments.component";
 import { NewAppointmentComponent } from "./appointment/new-appointment/new-appointment.component";
 import { UserAppointmentsComponent } from "./appointment/user-appointments/user-appointments.component";
-import { AuthGuard } from "./auth.guard";
+import { AuthGuard, AdminAuthGuard, DoctorAuthGuard, UserAuthGuard } from "./auth.guard";
 import { ProfileEditComponent } from "./profile/profile-edit/profile-edit.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { DoctorPatientsComponent } from "./user-account/doctor-patients/doctor-patients.component";
@@ -25,36 +25,42 @@ const appRoutes: Routes = [
   {
     path: 'userAccount/all',
     component: UserAccountComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'userAccount/doctor',
-    component: DoctorPatientsComponent
+    component: DoctorPatientsComponent,
+    canActivate: [AuthGuard, DoctorAuthGuard]
   },
   {
     path: 'appointment/all',
-    component: AppointmentComponent
+    component: AppointmentComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'appointment/doctor',
-    component: DoctorAppointmentsComponent
+    component: DoctorAppointmentsComponent,
+    canActivate: [AuthGuard, DoctorAuthGuard]
   },
   {
     path: 'appointment/user',
-    component: UserAppointmentsComponent
+    component: UserAppointmentsComponent,
+    canActivate: [AuthGuard, UserAuthGuard]
+    
   },
-  {
-    path: 'appointment/new',
-    component: NewAppointmentComponent
-  },
+//  {
+//    path: 'appointment/new',
+//    component: NewAppointmentComponent
+//  },
   {
     path: 'me',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'me/edit',
-    component: ProfileEditComponent
-  }
+//  {
+//    path: 'me/edit',
+//    component: ProfileEditComponent
+//  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

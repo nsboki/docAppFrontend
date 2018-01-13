@@ -11,9 +11,15 @@ import { forEachChild } from "typescript";
 })
 export class UserAccountComponent implements OnInit {
     
+//  private me: UserObj;
+//  private userRole: string;
+  private username: string;
   userList: UserObj[];
   constructor(private _userService: UserService, private _router: Router) {
     this.getUsers();
+//    this._userService.getUser(this.username).subscribe(
+//      user => {this.me = JSON.parse(JSON.parse(JSON.stringify(user))._body);
+//      });
   }
 
   getUsers() {
@@ -25,9 +31,15 @@ export class UserAccountComponent implements OnInit {
     )
   }
   
-  getUserRole(username: string) {
-    this._userService.getUserRole(username);
-  }
+//  getUserRole(username: string) {
+//    this._userService.getUserRole(this.username).subscribe(
+//      (role: any)=> {
+//        this.userRole = JSON.parse(JSON.stringify(role))._body;
+//        return this.userRole;
+//      }
+//      );
+//   
+//  }
    
   enableUser(username: string) {
     this._userService.enableUser(username).subscribe();
@@ -40,6 +52,7 @@ export class UserAccountComponent implements OnInit {
   }
   
   ngOnInit() {
+    
   }
 
 }

@@ -3,7 +3,6 @@
 <table id="userTable" class="table table-striped" cellspacing="0" width="100%">
 	<thead>
 		<tr>
-			<th>Role</th>
 			<th>User Name</th>
 			<th>First Name</th>
 			<th>Last Name</th>
@@ -14,7 +13,6 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let user of userList">
-			<td value = "getUserRole(user.username)">{{getUserRole(user.username)}}</td>
 			<td>{{user.username}}</td>
 			<td>{{user.firstName}}</td>
 			<td>{{user.lastName}}</td>

@@ -28,5 +28,20 @@
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-<button class="btn btn-success" (click)="onNew()" [disabled]="haveDate()">Schedule An Appointment</button>
+
+<button class="btn btn-success" (click)="onNew()" [disabled]="!haveDate()">Schedule An Appointment</button>
+
+<br/>
+You can schedule an appointment:
+<ul>
+  <li> For next 30 days</li>
+</ul>
+<br/>
+You can't schedule an appointment:
+<ul>
+  <li> If doctor have more then 30 appointment this day. </li>
+  <li> If you have one unvisited appointment. First you mast delete it.</li>
+  <li> If you don't pick a date. </li>
+</ul>
+
  

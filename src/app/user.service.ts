@@ -40,6 +40,12 @@ export class UserService {
     let url = ServerUrl + "/api/user/role/"+username;
     return this._http.get(url, { withCredentials: true }); 
   }
+  
+//  checkCredential(username: string, password: string) {
+//    let url = ServerUrl + "/api/user/credentials/"+username;
+//    return this._http.post(url, password, { withCredentials: true });
+//  }
+  
 //  updateUser(me: UserObj) {
 //    
 //    let headers = new Headers(
@@ -71,6 +77,7 @@ export class UserService {
      let url = "http://localhost:8080/api/user/"+username+"/disable";
      return this._http.get(url, { withCredentials: true });
    }
+ 
   
 
 }

@@ -45,5 +45,10 @@ export class AppointmentService {
     return this._http.delete(url, { withCredentials: true });
   }
   
+  getActiveAppointment(username: string) {
+    let url = ServerUrl + "/api/appointment/active/"+username;
+    return this._http.get(url, { withCredentials: true });
+  }
+  
 }
 
