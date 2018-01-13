@@ -35,5 +35,10 @@ export class AppointmentService {
     return this._http.post(url, dateString, { withCredentials: true });
   }
   
+  updateDescription(id: number, description: string) {
+    let url = ServerUrl+"/api/appointment/description/"+id+"/"+description;
+    return this._http.post(url, description, {withCredentials: true });
+  }
+  
 }
 

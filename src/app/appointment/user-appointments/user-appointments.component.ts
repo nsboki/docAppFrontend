@@ -71,7 +71,7 @@ export class UserAppointmentsComponent implements OnInit {
     this.dateString = this.date.getFullYear() + "-" +this.date.getMonth()+1 + "-" + this.date.getDate();
     return this._appointmentService.createAppointment(this.dateString, this.username).subscribe(
         (data: any) => {
-          this._router.navigate(['appointment/user']);
+          location.reload();
         }
         );
 //    console.log(this.dateString);

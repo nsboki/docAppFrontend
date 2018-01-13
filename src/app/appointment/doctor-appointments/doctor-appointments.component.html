@@ -6,19 +6,23 @@
 			<th>Doctor</th>
 			<th>Patient</th>
 			<th>Date</th>
+			<th>Number</th>
 			<th>Description</th>
-			<th>Confirmed?</th>
-			<th>Action</th>
+			<th>Edit Description</th>
+			<th>Visited?</th>
+			<th>Action Visited </th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr *ngFor="let appointment of appointmentList">
 			<td>{{appointment.doctorUsername}}</td>
 			<td>{{appointment.patient.username}}</td>
-			<td>{{appointment.date | date: 'MM/dd/yyyy - hh:mm'}}</td>
-			<td>{{appointment.description}}</td>
+			<td>{{appointment.date | date: 'dd/MM/yyyy'}}</td>
+			<td>{{appointment.number}}</td>
+			<td><textarea rows="2" cols="50" [(ngModel)]="appointment.description"></textarea></td>
+			<td><a (click)="editAppointmentDescription( appointment.id, appointment.description)" style="cursor: pointer;">Save Description</a></td>
 			<td>{{appointment.confirmed}}</td>
-			<td [hidden]="appointment.confirmed"><a (click)="confirmAppointment(appointment.id)" style="cursor: pointer;">Confirm</a></td>
+			<td [hidden]="appointment.confirmed"><a (click)="confirmAppointment(appointment.id)" style="cursor: pointer;">Visited</a></td>
 			<!-- <td [hidden]="!user.enabled"><a (click)="disableUser(user.username)" style="cursor: pointer;">Disable</a></td> -->
 		</tr>
 	</tbody>

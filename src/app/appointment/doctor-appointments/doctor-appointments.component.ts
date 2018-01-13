@@ -38,6 +38,12 @@ export class DoctorAppointmentsComponent implements OnInit {
       location.reload();
     }
   
+  editAppointmentDescription(id: number, description: string) {
+    
+    this._appointmentService.updateDescription(id, description).subscribe();
+    location.reload();
+  }
+  
   ngOnInit() {
   }
 

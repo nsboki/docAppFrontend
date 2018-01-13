@@ -45,7 +45,7 @@ export class NewAppointmentComponent implements OnInit {
 //    this.appointment.date = this.date;
 //    this.appointment.doctorUsername = this.me.doctorUsername;
 //    this.appointment.patient = this.me;
-    return this._appointmentService.createAppointment(this.date, this.me);
+//    return this._appointmentService.createAppointment(this.date, this.me);
   }
   
   onCancel() {
