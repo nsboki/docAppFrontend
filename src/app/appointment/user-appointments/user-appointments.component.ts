@@ -79,5 +79,13 @@ export class UserAppointmentsComponent implements OnInit {
 //    this._router.navigate(['appointment/new']);
     
   }
+  
+  onDelete(id: number) {
+    return this._appointmentService.deleteAppointment(id).subscribe(
+      (data: any) => {
+        location.reload();
+      }
+    );
+  }
 
 }

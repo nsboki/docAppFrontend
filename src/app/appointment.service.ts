@@ -36,8 +36,13 @@ export class AppointmentService {
   }
   
   updateDescription(id: number, description: string) {
-    let url = ServerUrl+"/api/appointment/description/"+id+"/"+description;
+    let url = ServerUrl+"/api/appointment/description/"+id;
     return this._http.post(url, description, {withCredentials: true });
+  }
+  
+  deleteAppointment(id: number) {
+    let url = ServerUrl+"/api/appointment/delete/"+id;
+    return this._http.delete(url, { withCredentials: true });
   }
   
 }

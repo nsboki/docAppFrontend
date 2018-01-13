@@ -8,7 +8,7 @@
 			<th>Date</th>
 			<th>Number</th>
 			<th>Description</th>
-			<th>Confirmed?</th>
+			<th>Visited?</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,6 +19,7 @@
 			<td>{{appointment.number}}</td>
 			<td>{{appointment.description}}</td>
 			<td>{{appointment.confirmed}}</td>
+			<td><button class="btn btn-danger" (click)="onDelete(appointment.id)" [disabled]="appointment.confirmed">Delete Appointment</button></td>
 		</tr>
 	</tbody>
 </table>
