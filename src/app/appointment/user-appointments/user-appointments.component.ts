@@ -45,17 +45,18 @@ export class UserAppointmentsComponent implements OnInit {
     } else {
       this.maxDate.setMonth(this.minDate.getMonth()+1);
     }
-    this._appointmentService.getActiveAppointment(this.username).subscribe(
-      appointment => {
-        this.haveActiveAppointment = JSON.parse(JSON.stringify(appointment))._body;
-        console.log(this.haveActiveAppointment); 
-      }
-    );
+    
     
   }
 
   haveActiveApp() {
-    return (this.haveActiveAppointment);
+  
+  	this._appointmentService.getActiveAppointment(this.username).subscribe(
+      appointment => {
+        this.haveActiveAppointment = JSON.parse(JSON.stringify(appointment))._body;
+	    return (this.haveActiveAppointment);
+      }
+    );
   }
   
   haveDate() {
@@ -66,8 +67,8 @@ export class UserAppointmentsComponent implements OnInit {
     }
   }
   
-  disableBatton() {
-    if(!this.haveActiveAppointment){
+  disableButton() {
+    if(!this.haveActiveAppointment&&this.haveDate()){
       return true;
     } else if(this.haveDate()){
       return false;
@@ -87,6 +88,7 @@ export class UserAppointmentsComponent implements OnInit {
   } 
 
   ngOnInit() {
+  
   }
   
   onNew() {

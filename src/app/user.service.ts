@@ -13,26 +13,26 @@ export class UserService {
   constructor (private _http:Http){}
 
   getUsers() {
-    let url = "http://localhost:8080/api/user/all";
+    let url = ServerUrl+"/api/user/all";
     return this._http.get(url, { withCredentials: true });
   }
   getDoctors() {
-    let url = "http://localhost:8080/api/user/doctor/all";
+    let url = ServerUrl + "/api/user/doctor/all";
     return this._http.get(url, { withCredentials: true });
   }
   
   getPatients(username: string) {
-    let url = "http://localhost:8080/api/user/patient/"+username;
+    let url = ServerUrl + "/api/user/patient/"+username;
     return this._http.get(url, { withCredentials: true });
   }
   
   getDoctor(username: string) {
-    let url = "http://localhost:8080/api/user/doctor/"+username;
+    let url = ServerUrl + "/api/user/doctor/"+username;
     return this._http.get(url, { withCredentials: true });
   }
   
   getUser(username: string) {
-    let url = "http://localhost:8080/api/user/"+username;
+    let url = ServerUrl + "/api/user/"+username;
     return this._http.get(url, { withCredentials: true });
   }
   
@@ -61,7 +61,7 @@ export class UserService {
 ////    let params = new HttpParams;
 ////    params.set('firstName', me.firstName);
 ////    params.set('lastName', me.lastName);
-//    let url = "http://localhost:8080/api/user/"+me.username;
+//    let url = ServerUrl + "/api/user/"+me.username;
 ////    let params = 'firstName='+me.firstName+'&lastName='+lastName;
 //    
 //    return this._http.post(url, me, {headers: headers, withCredentials : true});
@@ -69,12 +69,12 @@ export class UserService {
 //  }
 
    enableUser (username: string) {
-     let url = "http://localhost:8080/api/user/"+username+"/enable";
+     let url = ServerUrl + "/api/user/"+username+"/enable";
      return this._http.get(url, { withCredentials: true });
    }
 
    disableUser (username: string) {
-     let url = "http://localhost:8080/api/user/"+username+"/disable";
+     let url = ServerUrl + "/api/user/"+username+"/disable";
      return this._http.get(url, { withCredentials: true });
    }
  

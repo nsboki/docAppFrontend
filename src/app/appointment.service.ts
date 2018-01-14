@@ -5,28 +5,29 @@ import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 
 
+
 @Injectable()
 export class AppointmentService {
 
   constructor (private _http:Http){}
 
   getAppointmentList() {
-    let url = "http://localhost:8080/api/appointment/all";
+    let url = ServerUrl + "/api/appointment/all";
     return this._http.get(url, { withCredentials: true });
   }
 
   confirmAppointment(id: number) {
-    let url = "http://localhost:8080/api/appointment/"+id+"/confirm";
+    let url = ServerUrl + "/appointment/"+id+"/confirm";
     return this._http.get(url, { withCredentials: true });
   }
   
   getDoctorAppointments(username: string) {
-    let url = "http://localhost:8080/api/appointment/"+username;
+    let url = ServerUrl + "/api/appointment/"+username;
     return this._http.get(url, { withCredentials: true });
   }
   
   getUserAppointments(id: number) {
-    let url = "http://localhost:8080/api/appointment/me/"+id;
+    let url = ServerUrl + "/api/appointment/me/"+id;
     return this._http.get(url, { withCredentials: true });
   }
   

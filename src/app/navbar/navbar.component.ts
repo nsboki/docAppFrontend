@@ -15,11 +15,13 @@ export class NavbarComponent implements OnInit {
   private isDoctor: boolean;
   private isPatient: boolean;
   private userRole: string;
-
+  localStorage.clear();
+  localStorage.setItem('PortalAdminHasLoggedIn', '');
+  
   constructor(private _loginService: LoginService, 
               private _router : Router,
               private _userService: UserService) {
-    if(localStorage.getItem('PortalAdminHasLoggedIn') == '') {
+    if(localStorage.getItem('PortalAdminHasLoggedIn') == ''||localStorage.getItem('PortalAdminHasLoggedIn')==null) {
       this.loggedIn = false;
     } else {
       this.loggedIn = true;
@@ -69,6 +71,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+  	
   }
 
 }

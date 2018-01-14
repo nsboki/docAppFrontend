@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
+import { ServerUrl } from "./auth.service";
 
 @Injectable()
 export class LoginService {
@@ -8,7 +9,7 @@ export class LoginService {
   constructor (private _http: Http) {}
 
   sendCredential(username: string, password: string) {
-    let url = "http://localhost:8080/index";
+    let url = ServerUrl+"/index";
     let params = 'username='+username+'&password='+password;
     let headers = new Headers(
     {
@@ -19,7 +20,7 @@ export class LoginService {
   }
 
   logout() {
-     let url = "http://localhost:8080/logout";
+     let url = ServerUrl + "/logout";
      return this._http.get(url, { withCredentials: true });
    }
 

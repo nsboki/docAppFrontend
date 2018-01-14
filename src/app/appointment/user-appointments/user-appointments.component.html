@@ -23,13 +23,21 @@
 		</tr>
 	</tbody>
 </table>
-<mat-form-field class="example-full-width">
+<!-- <div *ngIf ="!haveActiveApp()"> -->
+<!-- <button class="btn btn-success" (click)="haveActiveApp()">Schedule An Appointment</button> Have active appointment: {{!haveActiveAppointment}} -->
+
+<!-- <div *ngIf="haveActiveAppointment"> -->
+
+<div>
+<mat-form-field class="example-full-width" >
   <input matInput [matDatepickerFilter]="myFilter" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
 <button class="btn btn-success" (click)="onNew()" [disabled]="!haveDate()">Schedule An Appointment</button>
+
+</div>
 
 <br/>
 You can schedule an appointment:
