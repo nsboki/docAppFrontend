@@ -15,13 +15,16 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   success: boolean;
+  error: string;
 
   constructor (private _loginService: LoginService,
                private _userService: UserService) {
+    this.error = localStorage.getItem('Error');
     if(localStorage.getItem('PortalAdminHasLoggedIn') == '' || localStorage.getItem('PortalAdminHasLoggedIn') === null) {
       this.loggedIn = false;
     } else {
       this.loggedIn = true;
+      localStorage.removeItem('Error');
     }
   }
   
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
       res => {
         this.loggedIn=true;
         localStorage.setItem('PortalAdminHasLoggedIn', 'true');
+        localStorage.removeItem('Error');
         location.reload();
         localStorage.setItem('Username', this.username)
         
@@ -40,7 +44,12 @@ export class LoginComponent implements OnInit {
 //          }
 //        );
       },
-      err => console.log(err)
+      err => {
+      	
+      	  localStorage.setItem('Error','Credentials are not good. Try again!');
+	      console.log(err)
+	      location.reload();
+      }
     );
     
     

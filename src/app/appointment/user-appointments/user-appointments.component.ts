@@ -104,12 +104,16 @@ export class UserAppointmentsComponent implements OnInit {
     
   }
   
+  
+  
   onDelete(id: number) {
-    return this._appointmentService.deleteAppointment(id).subscribe(
-      (data: any) => {
-        location.reload();
-      }
-    );
+    if (confirm('Do you realy want to delete an appointment?')){
+	    return this._appointmentService.deleteAppointment(id).subscribe(
+	      (data: any) => {
+	        location.reload();
+	      }
+	    );
+    }
   }
 
 }

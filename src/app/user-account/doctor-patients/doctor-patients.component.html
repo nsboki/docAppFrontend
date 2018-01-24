@@ -8,8 +8,8 @@
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Email</th>
-			<th>Enabled</th>
-			<th>Action</th>
+			<!-- <th>Enabled</th>
+			<th>Action</th> -->
 		</tr>
 	</thead>
 	<tbody>
@@ -19,9 +19,9 @@
 			<td>{{user.firstName}}</td>
 			<td>{{user.lastName}}</td>
 			<td>{{user.email}}</td>
-			<td>{{user.enabled}}</td>
+			<!-- <td>{{user.enabled}}</td>
 			<td [hidden]="user.enabled"><a (click)="enableUser(user.username)" style="cursor: pointer;">Enable</a></td>
-			<td [hidden]="!user.enabled"><a (click)="disableUser(user.username)" style="cursor: pointer;">Disable</a></td>
+			<td [hidden]="!user.enabled"><a (click)="disableUser(user.username)" style="cursor: pointer;">Disable</a></td> -->
 		</tr>
 	</tbody>
 </table>  

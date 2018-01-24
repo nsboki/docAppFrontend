@@ -40,6 +40,17 @@ export class UserService {
     let url = ServerUrl + "/api/user/role/"+username;
     return this._http.get(url, { withCredentials: true }); 
   }
+
+  createCSR(newCSR: Object) {
+    let url = ServerUrl + "/api/settings/newRequest";
+    return this._http.post(url, newCSR, { withCredentials: true });
+  }
+
+  getBackend() {
+    let url = ServerUrl + "/userFront";
+    window.open(url);
+    return this._http.get(url, { withCredentials: true });
+  }
   
 //  checkCredential(username: string, password: string) {
 //    let url = ServerUrl + "/api/user/credentials/"+username;

@@ -72,6 +72,10 @@ export class ProfileComponent implements OnInit {
     
   }
   
+  onChangeSettings() {
+  	this._router.navigate(['/me/change']);
+  }
+  
   onCancel() {
     this.editMode = false;
     this.ngOnInit();

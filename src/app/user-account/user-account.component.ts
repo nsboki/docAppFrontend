@@ -51,6 +51,14 @@ export class UserAccountComponent implements OnInit {
     location.reload();
   }
   
+  goToUser(username: string) {
+    this._router.navigate(['/userAccount/edit'])
+  }
+
+  goToBack() {
+    this._userService.getBackend().subscribe();
+  }
+
   ngOnInit() {
     
   }

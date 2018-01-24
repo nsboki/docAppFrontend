@@ -5,8 +5,8 @@ import { UserService } from "./user.service";
 import { Injectable } from '@angular/core';
 
 // Devolopment settings
-//const GeneralServerIp: string = "localhost";
-const GeneralServerIp: string = "188.2.106.173";
+const GeneralServerIp: string = "localhost";
+//const GeneralServerIp: string = "188.2.106.173";
 export const ServerUrl: string = "http://" + GeneralServerIp + ":8080";
 export const AngularServerUrl: string = "http://" + GeneralServerIp + ":4200";
 

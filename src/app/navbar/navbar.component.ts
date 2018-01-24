@@ -15,7 +15,9 @@ export class NavbarComponent implements OnInit {
   private isDoctor: boolean;
   private isPatient: boolean;
   private userRole: string;
+  
   localStorage.clear();
+  
   localStorage.setItem('PortalAdminHasLoggedIn', '');
   
   constructor(private _loginService: LoginService, 

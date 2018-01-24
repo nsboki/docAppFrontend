@@ -60,6 +60,7 @@ MatFormFieldModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { AlertService } from "./alert.service";
 
 @NgModule({
   exports: [
@@ -136,7 +137,8 @@ export class MaterialModule {}
     AuthGuard,
     AdminAuthGuard,
     DoctorAuthGuard,
-    UserAuthGuard
+    UserAuthGuard,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

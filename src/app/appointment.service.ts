@@ -17,7 +17,7 @@ export class AppointmentService {
   }
 
   confirmAppointment(id: number) {
-    let url = ServerUrl + "/appointment/"+id+"/confirm";
+    let url = ServerUrl + "/api/appointment/"+id+"/confirm";
     return this._http.get(url, { withCredentials: true });
   }
   

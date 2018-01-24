@@ -27,6 +27,15 @@
 <!-- <button class="btn btn-success" (click)="haveActiveApp()">Schedule An Appointment</button> Have active appointment: {{!haveActiveAppointment}} -->
 
 <!-- <div *ngIf="haveActiveAppointment"> -->
+<div>
+<br/>
+<span>
+When you select the date, you will get next scheduled appointment.
+<p>
+This is your serial number for that day.
+</span>
+</div>
+<br/> 
 
 <div>
 <mat-form-field class="example-full-width" >
@@ -47,9 +56,9 @@ You can schedule an appointment:
 <br/>
 You can't schedule an appointment:
 <ul>
-  <li> If doctor have more then 30 appointment this day. </li>
-  <li> If you have one unvisited appointment. First you mast delete it.</li>
   <li> If you don't pick a date. </li>
+  <li> If doctor have more then 30 appointment this day. </li>
+  <!-- <li> If you have one unvisited appointment. First you mast delete it.</li> -->
 </ul>
 
  
